@@ -76,4 +76,4 @@ item.replaceChild(textnode, item.childNodes[0]);
 ```
 
 # css 선택자
-- p :nth-child(n) : <p>의 n번째 노드 선택.
+- p :nth-child(n) : n번째 자식 중의 p 태그 선택.
