@@ -13,12 +13,13 @@ white_button.addEventListener("click",function(){
 });
 
 writebox.addEventListener("click",function(){
-  document.querySelector("#option").style = "display:none";
-  document.querySelector("#option2").style = "display:on"
+  document.querySelector("#toolsOption").style = "display:none";
+  document.querySelector("#cancelOption").style = "display:on"
 });
 cancel.addEventListener("click",function(){
-  document.querySelector("#option").style = "display:on";
-  document.querySelector("#option2").style = "display:none"
+  document.querySelector("#toolsOption").style = "display:on";
+  document.querySelector("#cancelOption").style = "display:none"
+  writebox.value = null;
 });
 
 function checkStringMax(string){
