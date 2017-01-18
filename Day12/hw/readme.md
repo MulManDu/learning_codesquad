@@ -3,7 +3,7 @@
 
 ## 1. 각 태그별로 이벤트 핸들러를 적용.
 - 마지막 자식 엘리먼트부터 최상위 엘리먼트 순으로 발생한다.
-- ![img](./3event.png)
+- ![img](./img/3event.png)
 ## 2. document 에 이벤트 핸들러를 적용.
 - 마지막 자식 엘리먼트만 발생.
-- ![img](./1event.png)
+- ![img](./img/1event.png)
