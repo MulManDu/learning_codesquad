@@ -1,11 +1,18 @@
+.hidden{
+  display: none;
+}
+.showing{
+  display : null;
+}
+
 body{
   font-size : 18px;
   text-align: center;
   background-color: #e9ebee;
 }
 #writebox{
-  width:400px;
-  height: 100px;
+  //width:400px;
+  //height: 100px;
 }
 h1{
   font-size : 3rem;

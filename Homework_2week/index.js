@@ -1,5 +1,5 @@
 var controller = document.querySelector(".controller");
-
+var btnString = "<button>x</button>"
 controller.addEventListener("click", function(evt) {
   var btn = evt.target;
   if(btn.tagName !== "BUTTON") return;
@@ -24,7 +24,6 @@ function sort(){
   var listArray = ol.querySelectorAll("li");
   for(var i = 0; i < listArray.length; i++){
     for(var j = i+1; j< listArray.length; j++){
-
       if(listArray[i].innerHTML.length > listArray[j].innerHTML.length){
         var temp="";
         temp = listArray[i].innerHTML;
@@ -37,17 +36,17 @@ function sort(){
 }
 function addTask(addingTask) {
   var ol = document.querySelector("ol");
-  var node = document.createElement("LI");
-  var listArray = ol.querySelectorAll("li");
+  var nodeLi = document.createElement("LI");
   var judge = isIn(addingTask);
   if(!(judge)){
-    node.innerHTML = addingTask;
-    ol.appendChild(node);
+    nodeLi.innerHTML = addingTask + btnString;
+    ol.appendChild(nodeLi);
   }
 }
 function isIn(task){
   var ol = document.querySelector("ol");
   var listArray = ol.querySelectorAll("li");
+  var taskbutton = task + btnString;
   for(var i = 0; i < listArray.length; i++){
     if(listArray[i].innerHTML === task){
       blinkMessage("이미 존재하는 일입니다.")
@@ -80,6 +79,18 @@ function removeMessage(){
   var message = body.querySelector(".message");
   message.removeChild(node);
 }
+
+var ol = document.querySelector("ol");
+ol.addEventListener("click",function(evt){
+  var target = evt.target;
+  if("BUTTON" !== target.tagName) return ;
+  var li = target.parentElement;
+  var ol = li.parentElement;
+  ol.removeChild(li);
+});
+/*
+  close match
+*/
 
 
 
