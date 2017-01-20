@@ -11,24 +11,24 @@ for(var i = 0; i < Tabs.length; i++){
 function getEffect(evt){
   var target = evt.target;
   if(target.tagName === "SPAN") target = target.parentNode;
-  clearTabs(target);
+  uncolorTabs(target);
   colorTab(target);
   clearArticle();
   var url = getUrl(target);
   ajaxByUrl(url, reqArticle);
-  writeArticle(title,body);
+  //writeArticle(title,body);
 }
 
-function colorTab(target){
-  target.classList.add("tabclick");
-}
-
-function clearTabs(target){
+function uncolorTabs(target){
   var parent = target.parentNode;
   var children = parent.querySelectorAll(".tab");
   for(var i = 0; i < children.length; i++){
     children[i].classList.remove("tabclick");
   }
+}
+
+function colorTab(target){
+  target.classList.add("tabclick");
 }
 
 function clearArticle(){
@@ -41,20 +41,28 @@ function clearArticle(){
 function getUrl(target){
   var url = "";
   var id = target.id;
-  if(id === "position") url = post1_url;
-  if(id === "friend") url = post2_url;
-  if(id === "theme") url = post3_url;
-  if(id === "news") url = post4_url;
+  switch (id) {
+    case "position": url = post1_url
+      break;
+    case "friend": url = post2_url;
+      break;
+    case "theme": url = post3_url;
+      break;
+    case "news": url = post4_url;
+      break;
+    default: null;
+  }
   return url;
 }
 
+/* ajax */
 function ajaxByUrl(url, fnc){
   var xhrObj = new XMLHttpRequest();
   xhrObj.addEventListener("load", fnc);
   xhrObj.open("GET", url);
   xhrObj.send();
 }
-
+/* ajax 콜백함수 */
 function reqArticle(evt) {
   var articleObj = {};
   var title = "";
@@ -62,21 +70,15 @@ function reqArticle(evt) {
   var target = evt.target;
   var response = target.response;
   var json = JSON.parse(response);
-  articleObj = son["title"]
-  json["body"] 
-  for(var key in json){
-    if(key === "title") title = json[key];
-    if(key === "body") body = json[key];
-  }
-  articleObj = {
-    "title" :
-  }
+  articleObj["title"] = json["title"];
+  articleObj["body"] = json["body"];
+  writeArticle(articleObj)
 }
-function writeArticle(title, body){
+function writeArticle(articleObj){
   var titleNode = document.querySelector(".myName");
   var bodyNode = document.querySelector(".myDesc");
-  titleNode.insertAdjacentHTML("beforeend",title);
-  bodyNode.insertAdjacentHTML("beforeend",body);
+  titleNode.insertAdjacentHTML("beforeend",articleObj["title"]);
+  bodyNode.insertAdjacentHTML("beforeend",articleObj["body"]);
 }
 
 
