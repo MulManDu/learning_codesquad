@@ -13,10 +13,13 @@ second.addEventListener("click",function(evt){
 });
 third.addEventListener("click",function(evt){
   var target = evt.target;
+  //evt.stopPropagation();
   console.log("third: ",target);
 });
-
+/*
 document.addEventListener("click",function(evt){
   var target = evt.target;
+  //evt.stopPropagation();
   console.log("target: ", target);
 });
+*/

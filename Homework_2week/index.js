@@ -38,11 +38,11 @@ function addTask(addingTask) {
   var ol = document.querySelector("ol");
   var nodeLi = document.createElement("LI");
   var judge = isIn(addingTask);
-  if(!(judge)){
-    nodeLi.innerHTML = addingTask + btnString;
-    ol.appendChild(nodeLi);
-  }
+  if(judge) return ;
+  nodeLi.innerHTML = addingTask + btnString;
+  ol.appendChild(nodeLi);
 }
+
 function isIn(task){
   var ol = document.querySelector("ol");
   var listArray = ol.querySelectorAll("li");

@@ -1,0 +1,58 @@
+#wrapper {
+  text-align: center;
+  margin-top: 5%;
+}
+li {
+  display : inline;
+}
+header > div {
+  margin: 5px 0;
+}
+.userId > span:nth-child(2){
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+.userMessage > span:nth-child(2){
+  color: gray;
+}
+.userSNSInfo > li {
+  color : gray;
+  margin : 5px;
+  display : inline;
+}
+.userSNSInfo > li > .count{
+  color : rgb(136,191,114);
+}
+.tab {
+  display: inline;
+  border : 1px solid #bdc7d8;
+  position: relative;
+  padding: 10px 10%;
+  font-weight: bold;
+}
+.tabclick{
+  color: white;
+  background-color: rgb(221,147,116);
+}
+nav {
+  //background-color: red;
+  margin: 5% 0px;
+}
+nav > div {
+  //background-color: green;
+}
+.eleDisplayShow{
+  text-align: left;
+}
+.myName {
+  font-weight: bold;
+  font-size: 1.5rem;
+  margin-left: 9%;
+  margin-right: 9%;
+  margin-bottom: 3px;
+}
+.myDesc{
+  margin-left: 9%;
+  margin-right: 9%;
+
+}
