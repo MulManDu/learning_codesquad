@@ -30,7 +30,7 @@ header > div {
   padding: 10px 10%;
   font-weight: bold;
 }
-.tabclick{
+.selectedTab{
   color: white;
   background-color: rgb(221,147,116);
 }

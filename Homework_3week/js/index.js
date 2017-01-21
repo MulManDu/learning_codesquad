@@ -11,15 +11,20 @@ makeEvtForTabs();
 
 function makeEvtForTabs(){
   var Tabs = document.querySelectorAll("nav > .tab");
+  var header = document.querySelector(".mainHeader");
   for(var i = 0; i < Tabs.length; i++){
       Tabs[i].addEventListener("click", getEffect);
   }
+  header.addEventListener("click", function(evt){
+    uncolorTabs(Tabs);
+    removePost();
+  });
 }
 
 function getEffect(evt){
+  var Tabs = document.querySelectorAll("nav > .tab");
   var targetUrl = "";
   var target = evt.target;
-  var Tabs = document.querySelectorAll("nav > .tab");
   if(target.tagName === "SPAN") target = target.parentNode;
   uncolorTabs(Tabs);
   colorTab(target);
@@ -30,12 +35,12 @@ function getEffect(evt){
 
 function uncolorTabs(Tabs){
   for(var i = 0; i < Tabs.length; i++){
-    Tabs[i].classList.remove("tabclick");
+    Tabs[i].classList.remove("selectedTab");
   }
 }
 
 function colorTab(target){
-  target.classList.add("tabclick");
+  target.classList.add("selectedTab");
 }
 
 function removePost(){
