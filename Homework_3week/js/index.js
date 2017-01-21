@@ -1,19 +1,31 @@
+const title = "title";
+const body = "body";
+var postUrls = {
+  "position" : "http://jsonplaceholder.typicode.com/posts/1",
+  "friend" : "http://jsonplaceholder.typicode.com/posts/2",
+  "theme" : "http://jsonplaceholder.typicode.com/posts/3",
+  "news" : "http://jsonplaceholder.typicode.com/posts/4"
+}
 
-var Tabs = document.querySelectorAll("nav > .tab");
+makeEvtForTabs();
 
-for(var i = 0; i < Tabs.length; i++){
-    Tabs[i].addEventListener("click", getEffect);
+function makeEvtForTabs(){
+  var Tabs = document.querySelectorAll("nav > .tab");
+  for(var i = 0; i < Tabs.length; i++){
+      Tabs[i].addEventListener("click", getEffect);
+  }
 }
 
 function getEffect(evt){
   var url = "";
   var target = evt.target;
+  var Tabs = document.querySelectorAll("nav > .tab");
   if(target.tagName === "SPAN") target = target.parentNode;
   uncolorTabs(Tabs);
   colorTab(target);
   removePost();
-  url = getUrlById(target.id);
-  ajaxByUrl(url, reqPost);
+  targetUrl = postUrls[target.id];
+  ajaxByUrl(targetUrl, reqPost);
 }
 
 function uncolorTabs(Tabs){
@@ -33,13 +45,7 @@ function removePost(){
   bodyNode.innerHTML="";
 }
 
-function getUrlById(targetID){
-  var postUrls = {
-    "position" : "http://jsonplaceholder.typicode.com/posts/1",
-    "friend" : "http://jsonplaceholder.typicode.com/posts/2",
-    "theme" : "http://jsonplaceholder.typicode.com/posts/3",
-    "news" : "http://jsonplaceholder.typicode.com/posts/4"
-  }
+function getUrlById(targetID, postUrls){
   var url = postUrls[targetID];
   return url;
 }
@@ -57,14 +63,14 @@ function reqPost(evt) {
   var target = evt.target;
   var response = target.response;
   var json = JSON.parse(response);
-  PostObj["title"] = json["title"];
-  PostObj["body"] = json["body"];
+  PostObj[title] = json[title];
+  PostObj[body] = json[body];
   writePost(PostObj)
 }
 
 function writePost(PostObj){
   var titleNode = document.querySelector(".myName");
   var bodyNode = document.querySelector(".myDesc");
-  titleNode.insertAdjacentHTML("beforeend",PostObj["title"]);
-  bodyNode.insertAdjacentHTML("beforeend",PostObj["body"]);
+  titleNode.insertAdjacentHTML("beforeend",PostObj[title]);
+  bodyNode.insertAdjacentHTML("beforeend",PostObj[body]);
 }
