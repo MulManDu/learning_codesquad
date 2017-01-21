@@ -1,9 +1,4 @@
-var postUrls = {
-  "position" : "http://jsonplaceholder.typicode.com/posts/1",
-  "friend" : "http://jsonplaceholder.typicode.com/posts/2",
-  "theme" : "http://jsonplaceholder.typicode.com/posts/3",
-  "news" : "http://jsonplaceholder.typicode.com/posts/4"
-}
+
 var Tabs = document.querySelectorAll("nav > .tab");
 
 for(var i = 0; i < Tabs.length; i++){
@@ -14,18 +9,16 @@ function getEffect(evt){
   var url = "";
   var target = evt.target;
   if(target.tagName === "SPAN") target = target.parentNode;
-  uncolorTabs(target);
+  uncolorTabs(Tabs);
   colorTab(target);
   removePost();
-  url = getUrlById(target.id, postUrls);
+  url = getUrlById(target.id);
   ajaxByUrl(url, reqPost);
 }
 
-function uncolorTabs(target){
-  var parent = target.parentNode;
-  var children = parent.querySelectorAll(".tab");
-  for(var i = 0; i < children.length; i++){
-    children[i].classList.remove("tabclick");
+function uncolorTabs(Tabs){
+  for(var i = 0; i < Tabs.length; i++){
+    Tabs[i].classList.remove("tabclick");
   }
 }
 
@@ -40,7 +33,13 @@ function removePost(){
   bodyNode.innerHTML="";
 }
 
-function getUrlById(targetID, postUrls){
+function getUrlById(targetID){
+  var postUrls = {
+    "position" : "http://jsonplaceholder.typicode.com/posts/1",
+    "friend" : "http://jsonplaceholder.typicode.com/posts/2",
+    "theme" : "http://jsonplaceholder.typicode.com/posts/3",
+    "news" : "http://jsonplaceholder.typicode.com/posts/4"
+  }
   var url = postUrls[targetID];
   return url;
 }
