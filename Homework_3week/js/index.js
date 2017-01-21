@@ -17,7 +17,7 @@ function makeEvtForTabs(){
 }
 
 function getEffect(evt){
-  var url = "";
+  var targetUrl = "";
   var target = evt.target;
   var Tabs = document.querySelectorAll("nav > .tab");
   if(target.tagName === "SPAN") target = target.parentNode;
@@ -45,11 +45,6 @@ function removePost(){
   bodyNode.innerHTML="";
 }
 
-function getUrlById(targetID, postUrls){
-  var url = postUrls[targetID];
-  return url;
-}
-
 /* ajax */
 function ajaxByUrl(url, fnc){
   var xhrObj = new XMLHttpRequest();
@@ -57,6 +52,7 @@ function ajaxByUrl(url, fnc){
   xhrObj.open("GET", url);
   xhrObj.send();
 }
+
 /* ajax 콜백함수 */
 function reqPost(evt) {
   var PostObj = {};
