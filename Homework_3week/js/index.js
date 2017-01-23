@@ -1,10 +1,3 @@
-// DomContentLoaded
-
-
-document.addEventListener("DOMContentLoaded", function(){
-  makeEvtForTabs();
-});
-
 function makeEvtForTabs(){
   var Tabs = document.querySelectorAll("nav > .tab");
   var header = document.querySelector(".mainHeader");
@@ -29,7 +22,7 @@ function getEffect(evt){
   var target = evt.target;
   if(target.tagName === "SPAN") target = target.parentNode;
   uncolorTabs(Tabs);
-  colorTab(target);
+  colorTab(target.classList);
   removePost();
   targetUrl = postUrls[target.id];
   ajaxByUrl(targetUrl, reqPost);
@@ -41,8 +34,8 @@ function uncolorTabs(Tabs){
   }
 }
 
-function colorTab(target){
-  target.classList.add("selectedTab");
+function colorTab(classList){
+  classList.add("selectedTab");
 }
 
 function removePost(){
@@ -68,12 +61,21 @@ function reqPost(evt) {
   var json = JSON.parse(response);
   PostObj["title"] = json["title"];
   PostObj["body"] = json["body"];
-  writePost(PostObj)
+  writePost(PostObj);
 }
 
 function writePost(PostObj){
+  var postNode = document.querySelectorAll(".eleDisplayShow > ul > li > div");
+  postNode[0].innerHTML = PostObj["title"];
+  postNode[1].innerHTML = PostObj["body"];
+  /*
   var titleNode = document.querySelector(".myName");
   var bodyNode = document.querySelector(".myDesc");
   titleNode.insertAdjacentHTML("beforeend",PostObj["title"]);
   bodyNode.insertAdjacentHTML("beforeend",PostObj["body"]);
+  */
 }
+
+document.addEventListener("DOMContentLoaded", function(){
+  makeEvtForTabs();
+});
