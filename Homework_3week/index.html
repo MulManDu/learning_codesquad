@@ -70,18 +70,22 @@
                 </div>
             </nav>
             <section id="my_position" class="eleDisplayShow" >
-                <ul >
-                    <li >
-                        <div class="myName" ></div>
-                        <div class="myDesc" ></div>
-                    </li>
-                </ul>
+
             </section>
             <section id="my_friend"> </section>
             <section id="my_theme" > </section>
             <section id="my_news"> </section>
         </div>
     </div>
+    
+    <script type="listTemplate" id="listTemplate">
+        <ul >
+            <li >
+                <div>{{title}}</div>
+                <div>{{body}}</div>
+            </li>
+        </ul>
+    </script>
     <script src="./js/index.js" charset="utf-8"></script>
 </body>
 </html>

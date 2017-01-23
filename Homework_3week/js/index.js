@@ -25,24 +25,25 @@ function getEffect(target){
   var Tabs = document.querySelectorAll("nav > .tab");
   uncolorTabs(Tabs);
   colorTab(target.classList);
-  removePost();
+  removePost2();
+  //removePost();
   targetUrl = postUrls[target.id];
   ajaxByUrl(targetUrl, reqPost);
-}
-
-function uncolorTabs(Tabs){
-  var selectedTab = document.querySelector(".selectedTab");
-  if(selectedTab !== null) selectedTab.classList.remove("selectedTab");
-  /*
-  for(var i = 0; i < Tabs.length; i++){
-    Tabs[i].classList.remove("selectedTab");
-  }
-  */
 }
 
 
 function colorTab(classList){
   classList.add("selectedTab");
+}
+
+function removePost2(){
+  var section = document.querySelector("#my_position");
+  section.innerHTML="";
+}
+
+function uncolorTabs(Tabs){
+  var selectedTab = document.querySelector(".selectedTab");
+  if(selectedTab !== null) selectedTab.classList.remove("selectedTab");
 }
 
 function removePost(){
@@ -68,7 +69,8 @@ function reqPost(evt) {
   var json = JSON.parse(response);
   PostObj["title"] = json["title"];
   PostObj["body"] = json["body"];
-  writePost(PostObj);
+  replacePost2(PostObj);
+  //writePost(PostObj);
 }
 
 function writePost(PostObj){
@@ -80,3 +82,33 @@ function writePost(PostObj){
 document.addEventListener("DOMContentLoaded", function(){
   makeEvtNav();
 });
+
+/* ------------------------------------------*/
+/* --------------예시코드----------------------*/
+/* ------------------------------------------*/
+
+function replacePost(PostObj){
+  var template = [
+    "<ul>",
+      "<li>",
+        "<div>","{{title}}","</div>",
+        "<div>","{{body}}","</div>",
+        "</li>",
+      "</ul>"
+  ];
+  var section = document.querySelector("#my_position");
+  var templateString = template.join(" ")
+    .replace("{{title}}", PostObj.title)
+    .replace("{{body}}", PostObj.body);
+  section.innerHTML = templateString;
+}
+
+
+function replacePost2(PostObj){
+  var section = document.querySelector("#my_position");
+  var list = document.querySelector("#listTemplate");
+  var str = list.innerHTML;
+  str = str.replace("{{title}}", PostObj.title)
+           .replace("{{body}}", PostObj.body);
+  section.innerHTML = str;
+}
