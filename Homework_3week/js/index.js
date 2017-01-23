@@ -1,10 +1,15 @@
-function makeEvtForTabs(){
-  document.addEventListener("click", switchTab);
+var PostObj = {};
+
+function makeEvtNav(){
+  var nav = document.querySelector("nav");
+  nav.addEventListener("click", eventTab);
 }
-function switchTab(evt){
+
+function eventTab(evt){
   var target = evt.target;
+  //var div = document.querySelector()
   if(target.tagName === "SPAN") target = target.parentNode;
-  if(target.className !== "tab") return;
+  if(target.tagName !== "DIV") return;
   getEffect(target);
 }
 
@@ -15,6 +20,7 @@ function getEffect(target){
     "theme" : "http://jsonplaceholder.typicode.com/posts/3",
     "news" : "http://jsonplaceholder.typicode.com/posts/4"
   }
+
   var targetUrl = "";
   var Tabs = document.querySelectorAll("nav > .tab");
   uncolorTabs(Tabs);
@@ -25,10 +31,15 @@ function getEffect(target){
 }
 
 function uncolorTabs(Tabs){
+  var selectedTab = document.querySelector(".selectedTab");
+  if(selectedTab !== null) selectedTab.classList.remove("selectedTab");
+  /*
   for(var i = 0; i < Tabs.length; i++){
     Tabs[i].classList.remove("selectedTab");
   }
+  */
 }
+
 
 function colorTab(classList){
   classList.add("selectedTab");
@@ -51,7 +62,7 @@ function ajaxByUrl(url, fnc){
 
 /* ajax 콜백함수 */
 function reqPost(evt) {
-  var PostObj = {};
+  //var PostObj = {};
   var target = evt.target;
   var response = target.response;
   var json = JSON.parse(response);
@@ -67,5 +78,5 @@ function writePost(PostObj){
 }
 
 document.addEventListener("DOMContentLoaded", function(){
-  makeEvtForTabs();
+  makeEvtNav();
 });

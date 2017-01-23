@@ -7,6 +7,7 @@
 - 각각 이벤트리스너를 추가하지 않고, 하나의 이벤트리스너로 만들어보자. 어렵지만
 - 매개변수로 불필요한 객체를 넘기지 않는다.
 - display: flex. 해보기.
+- 메소드 체이닝. map filter
 
 ## 수정해보기
 - ajax 에서 콜백함수를 넣어서 만들어보기. fnc
@@ -17,3 +18,12 @@ document.addEventListener("DOMContentLoaded", function(){
   makeEvtForTabs();
 });
 ```
+
+# template. replace.
+```javascript
+var template = "<div>{{%name%}}<div>";
+```
+
+# 다음 수업
+- 롤릴 베너. 여러 사진들이 돌아가는. 미리 해보는 것도
+- 다음주 프로젝트 시작.
