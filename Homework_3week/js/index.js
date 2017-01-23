@@ -1,16 +1,14 @@
 function makeEvtForTabs(){
-  var Tabs = document.querySelectorAll("nav > .tab");
-  var header = document.querySelector(".mainHeader");
-  for(var i = 0; i < Tabs.length; i++){
-      Tabs[i].addEventListener("click", getEffect);
-  }
-  header.addEventListener("click", function(evt){
-    uncolorTabs(Tabs);
-    removePost();
-  });
+  document.addEventListener("click", switchTab);
+}
+function switchTab(evt){
+  var target = evt.target;
+  if(target.tagName === "SPAN") target = target.parentNode;
+  if(target.className !== "tab") return;
+  getEffect(target);
 }
 
-function getEffect(evt){
+function getEffect(target){
   var postUrls = {
     "position" : "http://jsonplaceholder.typicode.com/posts/1",
     "friend" : "http://jsonplaceholder.typicode.com/posts/2",
@@ -19,8 +17,6 @@ function getEffect(evt){
   }
   var targetUrl = "";
   var Tabs = document.querySelectorAll("nav > .tab");
-  var target = evt.target;
-  if(target.tagName === "SPAN") target = target.parentNode;
   uncolorTabs(Tabs);
   colorTab(target.classList);
   removePost();
@@ -68,12 +64,6 @@ function writePost(PostObj){
   var postNode = document.querySelectorAll(".eleDisplayShow > ul > li > div");
   postNode[0].innerHTML = PostObj["title"];
   postNode[1].innerHTML = PostObj["body"];
-  /*
-  var titleNode = document.querySelector(".myName");
-  var bodyNode = document.querySelector(".myDesc");
-  titleNode.insertAdjacentHTML("beforeend",PostObj["title"]);
-  bodyNode.insertAdjacentHTML("beforeend",PostObj["body"]);
-  */
 }
 
 document.addEventListener("DOMContentLoaded", function(){
