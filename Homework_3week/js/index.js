@@ -1,13 +1,9 @@
-const title = "title";
-const body = "body";
-var postUrls = {
-  "position" : "http://jsonplaceholder.typicode.com/posts/1",
-  "friend" : "http://jsonplaceholder.typicode.com/posts/2",
-  "theme" : "http://jsonplaceholder.typicode.com/posts/3",
-  "news" : "http://jsonplaceholder.typicode.com/posts/4"
-}
+// DomContentLoaded
 
-makeEvtForTabs();
+
+document.addEventListener("DOMContentLoaded", function(){
+  makeEvtForTabs();
+});
 
 function makeEvtForTabs(){
   var Tabs = document.querySelectorAll("nav > .tab");
@@ -22,8 +18,14 @@ function makeEvtForTabs(){
 }
 
 function getEffect(evt){
-  var Tabs = document.querySelectorAll("nav > .tab");
+  var postUrls = {
+    "position" : "http://jsonplaceholder.typicode.com/posts/1",
+    "friend" : "http://jsonplaceholder.typicode.com/posts/2",
+    "theme" : "http://jsonplaceholder.typicode.com/posts/3",
+    "news" : "http://jsonplaceholder.typicode.com/posts/4"
+  }
   var targetUrl = "";
+  var Tabs = document.querySelectorAll("nav > .tab");
   var target = evt.target;
   if(target.tagName === "SPAN") target = target.parentNode;
   uncolorTabs(Tabs);
@@ -64,14 +66,14 @@ function reqPost(evt) {
   var target = evt.target;
   var response = target.response;
   var json = JSON.parse(response);
-  PostObj[title] = json[title];
-  PostObj[body] = json[body];
+  PostObj["title"] = json["title"];
+  PostObj["body"] = json["body"];
   writePost(PostObj)
 }
 
 function writePost(PostObj){
   var titleNode = document.querySelector(".myName");
   var bodyNode = document.querySelector(".myDesc");
-  titleNode.insertAdjacentHTML("beforeend",PostObj[title]);
-  bodyNode.insertAdjacentHTML("beforeend",PostObj[body]);
+  titleNode.insertAdjacentHTML("beforeend",PostObj["title"]);
+  bodyNode.insertAdjacentHTML("beforeend",PostObj["body"]);
 }
