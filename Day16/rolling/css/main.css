@@ -1,0 +1,47 @@
+*{
+  margin:0px;
+  padding:0px;
+}
+#leftBtn {
+  position: absolute;
+  left: 540px;
+  top: 140px;
+}
+#rightBtn{
+  position: absolute;
+  right: 540px;
+  top: 140px;
+}
+#wrap{
+  width: 200px;
+  height: 200px;
+  overflow: hidden;
+  background-color: skyblue;
+  margin: auto;
+  margin-top: 50px;
+}
+
+#rolling{
+  background-color: pink;
+  position: relative;
+  //transform: translate3d(0,0,0);
+  transition: 1s;
+}
+
+#rolling > div {
+  width: 200px;
+  height: 200px;
+  text-align: center;
+  position:absolute;
+}
+#one {
+  background-color: red;
+}
+#two {
+  background-color: green;
+  left:200px
+}
+#three{
+  background-color: blue;
+  left:400px
+}
