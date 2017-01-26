@@ -1,4 +1,3 @@
-
 var Btn = document.querySelector("#Btn");
 Btn.addEventListener("click", getRoll);
 
@@ -11,7 +10,6 @@ function getRoll(evt){
 
   targetId = evt.target.id;
   rolling = document.querySelector("#rolling");
-  
   translate = getTranslateValue(rolling);
   contentWidth = getContentWidth(rolling);
   afterTranslate = calMovement(translate, targetId, contentWidth);
@@ -39,11 +37,31 @@ function calMovement(translate, direction, width){
 }
 
 function moveAside(translate, width){
+  var rolling = document.querySelector("#rolling");
   var divArray = rolling.querySelectorAll("div");
-  var maxMovement = divArray.length - 1;
+  var maxMovement = divArray.length;
   var minimum = -(width * maxMovement);
-  var max = 0;
-  if(minimum <= translate && translate <= max){
+  var max = width;
+
+  if(minimum < translate && translate < max){
+    rolling.classList.add("Transition");
     rolling.style.transform = "translate3d("+ translate +"px, 0px, 0px)";
   }
+  else if(translate === minimum){
+    translate = 0;
+    rolling.style.transform = "translate3d("+ translate +"px, 0px, 0px)";
+    rolling.classList.remove("Transition");
+  }
+  else if(translate === max){
+    translate = -getLeft(divArray[divArray.length-1]);
+    rolling.style.transform = "translate3d("+ translate +"px, 0px, 0px)";
+    rolling.classList.remove("Transition");
+  }
+}
+
+function getLeft(ele){
+  var str = window.getComputedStyle(ele).getPropertyValue("left"); // 200px
+  var left = str.replace(/(\d+)px/,"$1");
+  left = parseInt(left);
+  return left;
 }
