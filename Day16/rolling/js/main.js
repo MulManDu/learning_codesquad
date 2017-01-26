@@ -1,29 +1,49 @@
-var rolling = document.querySelector("#rolling");
-var Btn = document.querySelector("#Btn");
-var widthStr = window.getComputedStyle(rolling).getPropertyValue("width"); // 200px
-var width = widthStr.replace(/(\d+)px/,"$1");
-width = parseInt(width);
-var divs = rolling.querySelectorAll("div");
-var moveMaxCount = divs.length - 1;
 
+var Btn = document.querySelector("#Btn");
 Btn.addEventListener("click", getRoll);
 
 function getRoll(evt){
-  var targetId = evt.target.id;
-  rollBanner(targetId);
+  var targetId;
+  var rolling;
+  var translate = 0;
+  var contentWidth = 0;
+  var afterTranslate = 0;
+
+  targetId = evt.target.id;
+  rolling = document.querySelector("#rolling");
+  
+  translate = getTranslateValue(rolling);
+  contentWidth = getContentWidth(rolling);
+  afterTranslate = calMovement(translate, targetId, contentWidth);
+  moveAside(afterTranslate, contentWidth);
 }
 
-function rollBanner(targetId){
-  var transX = 0;
-  var transformStr = rolling.style.transform;
-  var valueX = transformStr.replace(/\w+\((-?\d+)px.+/,"$1");
-  //"translate3d(0px, 0px, 0px)"
-  valueX = parseInt(valueX);
-  if(targetId === "leftBtn") transX = valueX + width;
-  if(targetId === "rightBtn") transX = valueX - width;
-  if(transX <= 0 && transX >= -(width*moveMaxCount)){
-    //"translate3d(0px, 0px, 0px)"
-    var newtransformStr = transformStr.replace(valueX, transX);
-    rolling.style.transform = newtransformStr;
+function getTranslateValue(ele){
+  var str = ele.style.transform;
+  var translate = str.replace(/\w+\((-?\d+)px.+/,"$1");
+  var translate = parseInt(translate);
+  return translate;
+}
+
+function getContentWidth(ele){
+  var str = window.getComputedStyle(ele).getPropertyValue("width"); // 200px
+  var width = str.replace(/(\d+)px/,"$1");
+  width = parseInt(width);
+  return width;
+}
+
+function calMovement(translate, direction, width){
+  if(direction === "left") translate = translate + width;
+  else if(direction === "right") translate = translate - width;
+  return translate;
+}
+
+function moveAside(translate, width){
+  var divArray = rolling.querySelectorAll("div");
+  var maxMovement = divArray.length - 1;
+  var minimum = -(width * maxMovement);
+  var max = 0;
+  if(minimum <= translate && translate <= max){
+    rolling.style.transform = "translate3d("+ translate +"px, 0px, 0px)";
   }
 }

@@ -2,15 +2,16 @@
   margin:0px;
   padding:0px;
 }
-#leftBtn {
-  position: absolute;
-  left: 540px;
-  top: 140px;
+#Btn {
+  position: relative;
+  top: 44%;
 }
-#rightBtn{
-  position: absolute;
-  right: 540px;
-  top: 140px;
+#left{
+
+}
+#right{
+  left: 73%;
+  position: relative;
 }
 #wrap{
   width: 200px;

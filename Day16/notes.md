@@ -33,6 +33,8 @@
 - css 속성 얻기. getComputedStyle
 - position : absolute
 - transform, transition
+- cursor 속성
+- transitionend event
 
 ## 무한롤링
-- Dom 이 변경 되는 것이다. 
+- Dom 이 변경 되는 것이다.
