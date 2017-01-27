@@ -43,10 +43,12 @@ function moveAside(translate, width){
   var minimum = -(width * maxMovement);
   var max = width;
 
+
   if(minimum < translate && translate < max){
     rolling.classList.add("Transition");
     rolling.style.transform = "translate3d("+ translate +"px, 0px, 0px)";
   }
+
   else if(translate === minimum){
     translate = 0;
     rolling.style.transform = "translate3d("+ translate +"px, 0px, 0px)";
@@ -54,7 +56,8 @@ function moveAside(translate, width){
   }
   else if(translate === max){
     translate = -getLeft(divArray[divArray.length-1]);
-    rolling.style.transform = "translate3d("+ translate +"px, 0px, 0px)";
+    rolling.style.trans
+    form = "translate3d("+ translate +"px, 0px, 0px)";
     rolling.classList.remove("Transition");
   }
 }
@@ -64,4 +67,13 @@ function getLeft(ele){
   var left = str.replace(/(\d+)px/,"$1");
   left = parseInt(left);
   return left;
+}
+
+function evtmove(direction){
+  document.addEventListener("transitionend",function(){
+    if(direction === right){
+      div3 = document.querySelector(".three");
+
+    }
+  });
 }
