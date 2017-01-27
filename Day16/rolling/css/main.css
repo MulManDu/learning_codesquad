@@ -39,15 +39,15 @@
 }
 .two {
   background-color: green;
-  left:200px;
+  //left:200px;
 }
 .three{
   background-color: blue;
-  left:400px;
+  //left:400px;
 }
 .four{
   background-color: pink;
-  left:600px;
+  //left:600px;
 }
 .Transition {
   transition: 1s;

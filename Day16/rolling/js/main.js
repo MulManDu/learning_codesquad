@@ -2,18 +2,46 @@ var Btn = document.querySelector("#Btn");
 Btn.addEventListener("click", getRoll);
 
 function getRoll(evt){
-  var targetId;
-  var rolling;
-  var translate = 0;
-  var contentWidth = 0;
-  var afterTranslate = 0;
+  var targetId = evt.target.id;
+  Roll(targetId);
+  moveNodes(targetId);
+}
 
-  targetId = evt.target.id;
-  rolling = document.querySelector("#rolling");
-  translate = getTranslateValue(rolling);
-  contentWidth = getContentWidth(rolling);
-  afterTranslate = calMovement(translate, targetId, contentWidth);
-  moveAside(afterTranslate, contentWidth);
+function Roll(targetId){
+  var rolling = document.querySelector("#rolling");
+  var firstContent = rolling.querySelector("div:first-child");
+  var translate = getTranslateValue(rolling);
+  var width = getContentWidth(firstContent);
+  translate = calMovement(translate, targetId, width);
+  moveAside(translate);
+}
+
+function moveNodes(direction){
+  var rolling = document.querySelector("#rolling");
+  var firstContent = rolling.querySelector("div:first-child");
+  var lastContent = rolling.querySelector("div:last-child");
+  if(direction === "right") moveRight(rolling, firstContent, lastContent);
+  else if(direction === "left") moveLeft(rolling, firstContent, lastContent);
+}
+
+function moveRight(rolling, firstNode, lastNode){
+  var styleX = getTranslateValue(lastNode);
+  var width = getContentWidth(firstNode);
+  styleX = styleX + width;
+  changeStyleX(firstNode, styleX);
+  rolling.appendChild(firstNode);
+}
+
+function moveLeft(rolling, firstNode, lastNode){
+  var styleX = getTranslateValue(firstNode);
+  var width = getContentWidth(firstNode);
+  styleX = styleX - width;
+  changeStyleX(lastNode, styleX);
+  rolling.insertBefore(lastNode, rolling.childNodes[0]);
+}
+
+function changeStyleX(node, styleX){
+  node.style.transform = "translate3d("+ styleX +"px, 0px, 0px)";
 }
 
 function getTranslateValue(ele){
@@ -24,7 +52,7 @@ function getTranslateValue(ele){
 }
 
 function getContentWidth(ele){
-  var str = window.getComputedStyle(ele).getPropertyValue("width"); // 200px
+  var str = window.getComputedStyle(ele).getPropertyValue("width");
   var width = str.replace(/(\d+)px/,"$1");
   width = parseInt(width);
   return width;
@@ -36,44 +64,7 @@ function calMovement(translate, direction, width){
   return translate;
 }
 
-function moveAside(translate, width){
+function moveAside(translate){
   var rolling = document.querySelector("#rolling");
-  var divArray = rolling.querySelectorAll("div");
-  var maxMovement = divArray.length;
-  var minimum = -(width * maxMovement);
-  var max = width;
-
-
-  if(minimum < translate && translate < max){
-    rolling.classList.add("Transition");
-    rolling.style.transform = "translate3d("+ translate +"px, 0px, 0px)";
-  }
-
-  else if(translate === minimum){
-    translate = 0;
-    rolling.style.transform = "translate3d("+ translate +"px, 0px, 0px)";
-    rolling.classList.remove("Transition");
-  }
-  else if(translate === max){
-    translate = -getLeft(divArray[divArray.length-1]);
-    rolling.style.trans
-    form = "translate3d("+ translate +"px, 0px, 0px)";
-    rolling.classList.remove("Transition");
-  }
-}
-
-function getLeft(ele){
-  var str = window.getComputedStyle(ele).getPropertyValue("left"); // 200px
-  var left = str.replace(/(\d+)px/,"$1");
-  left = parseInt(left);
-  return left;
-}
-
-function evtmove(direction){
-  document.addEventListener("transitionend",function(){
-    if(direction === right){
-      div3 = document.querySelector(".three");
-
-    }
-  });
+  rolling.style.transform = "translate3d("+ translate +"px, 0px, 0px)";
 }
