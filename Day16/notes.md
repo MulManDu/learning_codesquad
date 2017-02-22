@@ -38,3 +38,9 @@
 
 ## 무한롤링
 - Dom 이 변경 되는 것이다.
+
+### 개선점
+- request animation frame
+- translate 값 초기화
+- transitionend
+- keyframe (css) : 일정한 시간에 규칙적으로 발생

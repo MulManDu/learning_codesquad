@@ -35,6 +35,7 @@ function addValue(array, value){
   array[length] = value;
 }
 
+
 addressBook.init(addressBook);
 addressBook.store("이채윤", "부산 해운대구");
 addressBook.store("도깨비", "캐나다 벤쿠버");
@@ -44,3 +45,9 @@ addressBook.store("써니", "서울시 BBQ치킨구");
 addressBook.store("이채윤", "서울시 서초구");
 var result = addressBook.search("이채윤");
 console.log(result);
+
+
+/* 2번 과제: 랜덤 이름 생성기 */
+function genName(){
+  
+}

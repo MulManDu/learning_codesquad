@@ -4,22 +4,25 @@
 }
 #Btn {
   position: relative;
-  top: 44%;
+  top: 50%;
+}
+#left, #right {
+  font-size: 1rem;
+  padding: 5px 5px;
 }
 #left{
-
 }
 #right{
-  left: 73%;
+  left: 90%;
   position: relative;
 }
 #wrap{
-  width: 200px;
-  height: 200px;
+  width: 800px;
+  height: 800px;
   overflow: hidden;
-  background-color: skyblue;
+  //background-color: skyblue;
   margin: auto;
-  margin-top: 50px;
+  margin-top: 0.5%;
 }
 
 #rolling{
@@ -29,25 +32,26 @@
 }
 
 #rolling > div {
-  width: 200px;
-  height: 200px;
-  text-align: center;
+  width: 800px;
+  height: 800px;
   position:absolute;
+  text-align: center;
+  //vertical-align: middle;
+  //line-height: 400px;
+  //font-size: 10rem;
+  //border-radius: 1.5rem;
 }
 .one {
-  background-color: red;
+  background-color: rgba(255,87,51,1);
 }
 .two {
-  background-color: green;
-  //left:200px;
+  background-color: rgba(40, 180, 99, 1);
 }
 .three{
-  background-color: blue;
-  //left:400px;
+  background-color: rgba(52, 152, 219, 1);
 }
 .four{
   background-color: pink;
-  //left:600px;
 }
 .Transition {
   transition: 0.5s;
